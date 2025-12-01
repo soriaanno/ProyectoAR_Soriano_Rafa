@@ -9,18 +9,18 @@ public class GameManager : MonoBehaviour
     public event Action OnItemsMenu;
     public event Action OnARPosition;
 
-    public static GameManager Instance;
+    public static GameManager instance;
 
     private void Awake()
     {
         // Singleton sencillo: si ya existe otra instancia, destruye este GameObject
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
+        instance = this;
     }
 
     void Start()

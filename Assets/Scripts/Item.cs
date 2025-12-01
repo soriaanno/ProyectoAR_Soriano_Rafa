@@ -5,8 +5,11 @@ using System.Collections.Generic;
 [CreateAssetMenu]
 public class Item : ScriptableObject
 {
-    public string itemName;
-    public Sprite itemIcon;
-    public GameObject itemDescription;
-    public GameObject item3DModel;
+    [SerializeField] public string ItemName;
+    //[SerializeField] public Sprite ItemIcon;
+    [SerializeField] public string ItemDescription;
+    [SerializeField] public GameObject Item3DModel;
+    [SerializeField] public Sprite ItemImage;
+
+
 }

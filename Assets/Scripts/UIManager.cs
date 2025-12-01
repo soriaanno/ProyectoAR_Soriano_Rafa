@@ -13,9 +13,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.OnMainMenu += ActivateMainMenu;
-        GameManager.Instance.OnItemsMenu += ActivateItemsMenu;
-        GameManager.Instance.OnARPosition += ActivateARPosition;
+        GameManager.instance.OnMainMenu += ActivateMainMenu;
+        GameManager.instance.OnItemsMenu += ActivateItemsMenu;
+        GameManager.instance.OnARPosition += ActivateARPosition;
 
     }
 

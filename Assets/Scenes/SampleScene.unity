@@ -285,7 +285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4377711.5, y: 3523286}
+  m_AnchoredPosition: {x: -6140576.5, y: 4946444}
   m_SizeDelta: {x: 0, y: 440}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &31466606
@@ -842,6 +842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449458946}
   - component: {fileID: 449458947}
+  - component: {fileID: 449458948}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -871,7 +872,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449458945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 577f3e04faa3358439daba16260e5caa, type: 3}
   m_Name: 
@@ -884,6 +885,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aeeadc1854e3e9a43a7b04be44c6217d, type: 2}
   buttonContainer: {fileID: 31466604}
   itemButtonManager: {fileID: -7554577289589547275, guid: 5c9a9df7481563843bb00cf25583cde1, type: 3}
+--- !u!114 &449458948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449458945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8d96feb6a20a941974d47fda3f02c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonURL: https://drive.google.com/uc?export=download&id=1yPKZ6ZpxbC4H3jrellsEM84YxUNvXTtE
+  itemButtonManager: {fileID: -7554577289589547275, guid: 5c9a9df7481563843bb00cf25583cde1, type: 3}
+  buttonsContainer: {fileID: 31466604}
+  newItemsCollection:
+    items: []
 --- !u!1 &478574693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,6 +1754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034992314}
   - component: {fileID: 1034992313}
+  - component: {fileID: 1034992315}
   m_Layer: 0
   m_Name: ARInteractionsManager
   m_TagString: Untagged
@@ -1772,6 +1791,19 @@ Transform:
   - {fileID: 736083293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1034992315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034992312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2d752b0f5821940b0c21c190da0646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuCanvas: {fileID: 185513329}
 --- !u!1 &1369221574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,7 +2743,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2010968220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1034992315}
+        m_TargetAssemblyTypeName: ShareScreenShot, Assembly-CSharp
+        m_MethodName: TakeScreenShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2010968220
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using UnityEngine.Networking;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
+using UnityEngine.EventSystems;
+using System.IO;
 
 public class ItemButtonManager : MonoBehaviour
 {
@@ -8,6 +17,8 @@ public class ItemButtonManager : MonoBehaviour
     private Sprite itemImage;
     private GameObject item3DModel;
     private ARInteractionsManager interactionsManager;
+    private string urlBundleModel;
+    private RawImage imageBundle;
 
     public string ItemName
     {
@@ -18,14 +29,22 @@ public class ItemButtonManager : MonoBehaviour
     }
 
     public string ItemDescription { set => itemDescription = value; }
+
     public Sprite ItemImage { set => itemImage = value; }
+
     public GameObject Item3DModel { set => item3DModel = value; }
+
+    public string URLBundleModel { set => urlBundleModel = value; }
+
+    public RawImage ImageBundle { get => imageBundle; set => imageBundle = value; }
+
 
     // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(0).GetComponent<Text>().text = itemName;
-        transform.GetChild(1).GetComponent<RawImage>().texture = itemImage.texture;
+        //transform.GetChild(1).GetComponent<RawImage>().texture = itemImage.texture;
+        imageBundle = transform.GetChild(1).GetComponent<RawImage>();
         transform.GetChild(2).GetComponent<Text>().text = itemDescription;
 
         var button = GetComponent<Button>();
@@ -37,6 +56,31 @@ public class ItemButtonManager : MonoBehaviour
 
     private void Create3DModel()
     {
-        interactionsManager.Item3DModel = Instantiate(item3DModel);
+        //interactionsManager.Item3DModel = Instantiate(item3DModel);
+        StartCoroutine(DownLoadAssetBundle(urlBundleModel));
     }
+
+    IEnumerator DownLoadAssetBundle(string urlAssetBundle)
+    {
+        UnityWebRequest serverRequest = UnityWebRequestAssetBundle.GetAssetBundle(urlAssetBundle);
+        yield return serverRequest.SendWebRequest();
+
+        if (serverRequest.result == UnityWebRequest.Result.Success)
+        {
+            AssetBundle model3D = DownloadHandlerAssetBundle.GetContent(serverRequest);
+            if (model3D != null)
+            {
+                interactionsManager.Item3DModel = Instantiate(model3D.LoadAsset(model3D.GetAllAssetNames()[0]) as GameObject);
+            }
+            else
+            {
+                Debug.Log("Not a valid Assets Bundle");
+            }
+        }
+        else
+        {
+            Debug.Log("Error x'C");
+        }
+    }
+
 }
